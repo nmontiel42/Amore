@@ -1,31 +1,35 @@
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
+import { useNavigate } from 'react-router-dom';
 
 export default function LoggedIn() {
   const { user, logout } = useKindeAuth();
 
   return (
     <>
-      <header>
-        <nav className="nav container">
-          <h1 className="text-display-3">KindeAuth</h1>
-          <div className="profile-blob">
-            {user.picture !== "" ? (
-              <img
-                className="avatar"
-                src={user.picture}
-                alt="user profile avatar"
-              />
-            ) : (
-              <div className="avatar">
-                {user?.given_name?.[0]}
-                {user?.family_name?.[1]}
-              </div>
-            )}
-            <div>
-              <p className="text-heading-2">
+      <header className="bg-pink-200 shadow-md">
+        <nav className="container mx-auto flex justify-between items-center p-3">
+          <h1 className="text-3xl text-gradient mb-2 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-purple-600">Amore</h1>
+          <div className="flex items-center space-x-4">
+            {user.picture ? (
+                <img
+                  className="h-12 w-12 rounded-full border-2 border-white shadow-lg"
+                  src={user.picture}
+                  alt="user profile avatar"
+                />
+              ) : (
+                <div className="h-12 w-12 flex items-center justify-center rounded-full border-2 border-gray-300 bg-gray-200 text-gray-600 font-bold shadow-lg">
+                  {user?.given_name?.[0] || 'N'}{user?.family_name?.[0] || 'N'}
+                </div>
+              )}
+
+            <div className="flex flex-col">
+              <p className="text-lg font-semibold text-gray-800">
                 {user?.given_name} {user?.family_name}
               </p>
-              <button className="text-subtle" onClick={logout}>
+              <button
+                className="text-red-600 hover:underline"
+                onClick={logout}
+              >
                 Sign out
               </button>
             </div>
@@ -33,34 +37,19 @@ export default function LoggedIn() {
         </nav>
       </header>
 
-      <main>
-        <div className="container">
-          <div className="card start-hero">
-            <p className="text-body-2 start-hero-intro">Woohoo!</p>
-            <p className="text-display-2">
-              Your authentication is all sorted.
-              <br />
-              Build the important stuff.
-            </p>
+      <main className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="container mx-auto p-6">
+          <div className="bg-white shadow-xl rounded-lg p-8">
+            <p className="text-xl text-center text-gray-700">Woohoo!</p>
           </div>
-          <section className="next-steps-section">
-            <h2 className="text-heading-1">Next steps for you</h2>
-          </section>
         </div>
       </main>
 
-      <footer className="footer">
-        <div className="container">
-          <strong className="text-heading-2">KindeAuth</strong>
-          <p className="footer-tagline text-body-3">
-            Visit our{" "}
-            <a className="link" href="https://kinde.com/docs">
-              help center
-            </a>
-          </p>
-
-          <small className="text-subtle">
-            © 2023 KindeAuth, Inc. All rights reserved
+      <footer className="bg-pink-200">
+        <div className="container mx-auto p-4 text-center">
+          <strong className="text-lg text-gray-700">Amore</strong>
+          <small className="text-gray-600 block">
+            © 2023 Amore, Inc. All rights reserved
           </small>
         </div>
       </footer>
